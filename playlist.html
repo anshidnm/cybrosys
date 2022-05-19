@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .pl_name {
+            border: none;
+            background: none;
+            pointer-events: none;
+            color: white;
+        }
+
+        .pl_link {
+            display: none;
+        }
+       .playbut:hover{
+            cursor: pointer;
+            color: rgb(8, 168, 34);;
+            
+       }
+       .add:hover{
+        cursor: pointer;
+        background-color: rgb(134, 9, 9);
+       }
+       .add{
+           background-color: rgb(192, 45, 45);
+       }
+       .mp{
+           background-color: rgb(0, 0, 0);
+           color: rgb(192, 45, 45);
+       }
+       .delbut:hover{
+            cursor: pointer;
+            color: rgb(182, 13, 13);
+       }
+
+       
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Playlist</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 bg-dark text-light p-5" style="min-height: 650px;">
+                <div class="d-flex justify-content-center">
+                    <form action="">
+                        <label for="">Music Name</label><br>
+                        <input type="text" id="name" class=""><br>
+                        <label for="" class="mt-2">Link</label><br>
+                        <input type="text" id="link" class=""><br>
+
+                        <label for="" id="but" class="add mt-3 rounded p-2 w-100 text-center">Add To List</label>
+                        
+                </div>
+                <div class="d-flex justify-content-center mt-5">
+                <label for=""><u>Play List</u></label>
+            </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <div id="playlist">
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="col-md-6 p-5 mp">
+                <h1 class="text-center">Music Player</h1>
+                <div class="d-flex justify-content-center">
+
+                    <iframe id="ifr" src="" frameborder="2" allow='autoplay' height="500" width="500"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script>
+        var msc_id = 0
+        var dlt_id =0
+
+        $(document).ready(function () {
+            $("#but").click(function () {
+                var link = $("#link").val()
+                var name = $("#name").val()
+                msc_id = msc_id + 1
+                dlt_id=dlt_id-1
+                if(link.length != 0 && name.length !=0 ){
+                $("#playlist").append("<div id='"+dlt_id+"'><input class='pl_name' value='" + name + "'><input id='" + msc_id + "' class='pl_link' value='" + link + "'><label class='playbut' onclick=ifr(" + msc_id + ")>Play</label>&nbsp&nbsp&nbsp<label class='delbut' onclick=dlt("+dlt_id+")>Delete</label><br></div>")
+            }
+            })
+        })
+        function ifr(msc) {
+            var link_value = $("#" + msc).val()
+            $("#ifr").attr("src", link_value)
+        }
+        function dlt(dltid){
+            $("#"+dltid).remove()
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
